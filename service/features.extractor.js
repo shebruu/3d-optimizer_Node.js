@@ -1,4 +1,3 @@
-// Extraction des features  et calculs automatiques
 
 const path = require('path');
 const { spawnSync } = require('child_process');
@@ -20,6 +19,9 @@ function extractStlFeatures(stlPath) {
     if (result.status !== 0) throw new Error(result.stderr || 'Erreur lors de l\'extraction STL');
     return JSON.parse(result.stdout);
 }
+
+
+
 
 /**
  * Calcul des features dérivées

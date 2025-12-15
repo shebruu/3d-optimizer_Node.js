@@ -1,6 +1,7 @@
 import sys
 import json
 import os
+import matplotlib.pyplot as plt
 import trimesh
 
 
@@ -26,4 +27,28 @@ result = {
     "bbox_z": float(bbox[2]),
     "euler_number": int(getattr(mesh, "euler_number", 0)),
 }
+
+
+def print_form(mesh):
+    points = mesh.points.reshape(-1, 3)
+    fig = plt.figure(figsize=(5, 5))
+
+    plt.scatter(points[:, 0], points[:, 1], s=1)
+    plt.show()
+
+
+def print_form(mesh):
+    if hasattr(mesh, "points"):
+        points = mesh.points.reshape(-1, 3)
+    else:
+        points = mesh.vertices.reshape(-1, 3)
+
+    fig = plt.figure(figsize=(5, 5))
+    plt.scatter(points[:, 0], points[:, 1], s=1)
+    plt.title("Projection XY")
+    plt.xlabel("X")
+    plt.ylabel("Y")
+    plt.show()
+
+
 print(json.dumps(result))
