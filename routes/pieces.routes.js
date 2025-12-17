@@ -1,12 +1,14 @@
 
 const router = require('express').Router();
 const multer = require('multer');
-const upload = multer({ dest: 'uploads/' });
 const path = require('path');
-
 const pieceController = require('../controller/piece.controller');
 const { createPiece } = require('../service/pieces.service');
 
+const upload = multer({
+    dest: "uploads/",
+    limits: { fileSize: 200 * 1024 * 1024 },
+});
 
 router.post('/upload-stl', upload.single('stl'), pieceController.uploadStl);
 

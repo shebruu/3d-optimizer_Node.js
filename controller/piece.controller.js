@@ -41,12 +41,10 @@ const uploadStl = async (req, res) => {
       const result = serviceCallResult.badRequest("Aucun fichier STL fourni.");
       return apiCallResult(res, result);
     }
-
     const stl_filename = req.file.filename;
     const stlPath = req.file.path;
 
     const params = { ...req.body, stl_filename, stlPath };
-
 
     const result = await piecesService.extractFromStl(params);
 

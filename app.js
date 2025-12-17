@@ -4,8 +4,18 @@ const { models, sequelize } = require('./models');
 
 const { notFoundHandler, errorHandler } = require("./middelware/error")
 const logger = require("./middelware/logger")
+const cors = require("cors");
 
 const app = express();
+
+app.use(
+    cors({
+        origin: "http://localhost:8080",
+        methods: ["GET", "POST", "PUT", "DELETE", "OPTIONS"],
+        allowedHeaders: ["Content-Type", "Authorization"],
+    })
+);
+app.use(cors());
 
 const piecesRoutes = require("./routes/pieces.routes");
 const predictionsRoutes = require("./routes/predictions.routes")
